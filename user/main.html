@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,900">
+        <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../lib/select2/dist/css/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="../view/assets/css/lib/font-awesome/css/font-awesome.css"/>
+        <link rel="stylesheet" type="text/css" href="../lib/icheck/skins/all.css"/>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
+        <link rel="stylesheet" type="text/css" href="../view/assets/css/style.css"/>
+        <link rel="icon" href="../view/assets/images/hobo.jpg">
+        <title>The HOBO App</title>
+    </head>
+    <body>
+        <div id="pre-loader" class="animated fadeIn">
+            <div class="pre-container">
+                <div id="pre-loader-img"></div>
+                <!-- <div id="pre-loader-item"></div> -->
+                <h3></h3>
+            </div>
+        </div>
+        <section>
+            <header class="header fixed-top clearfix animated fadeIn">
+                <div class="brand pull-left">
+                    <a href="#/dashboard" class="logo animated fadeIn">
+                        <img class="default-logo" alt="Bum logo" src='../view/assets/images/vecteezy_mechanical-gear-with-space-ship-inside_.jpg'/>
+                    </a>
+                  
+                </div>
+                <div class="top-nav clearfix">
+                    <ul class="nav pull-right top-menu padding-right-30 padding-top-15">
+                       <li class="dropdown prof-dd">
+                            <a data-toggle="dropdown" class="pointer no-txt-decoration dropdown-toggle profile-dropdown" data-bs-toggle="dropdown">
+                                <!-- <img alt="avatar" class="small-avatar" src="../../profile_photo/no_profile.png"> -->
+                                <span class="username"></span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout padding-10">
+                                <li>
+                                    <a class='no-txt-decoration' href="#/profile">
+                                        <i class=" fa fa-suitcase"></i>
+                                        <span>View Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" class="no-txt-decoration logout_user">
+                                        <i class="fa fa-key"></i>
+                                        <span data-i18n="">Log Out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>		
+                    </ul>
+                </div>
+            </header>
+            <aside>
+                <div id="sidebar" class="nav-collapse open" style="z-index:1000;">
+		            <div class="leftside-navigation">
+		            	<div class="sidebar-toggle-container">
+		            		<div class="sidebar-title">
+		            			<span data-i18n="setting.sidebar.main"></span>
+		            		</div>
+		            	</div>
+	            		<div class="btn-sidebar-toggle btn-primary open">
+	            			<i class="fa fa-angle-left"></i>
+	            			<i class="fa fa-angle-right"></i>
+	            		</div>
+		                <ul class="sidebar-menu menu" id="nav-accordion">
+		                </ul>
+		            </div>
+		        </div>
+            </aside>
+            <section id="main-content" class="open">
+                <div class="wrapper clearfix animated fadeIn" container-id="dashboard" style="display: none;">
+					<div class="col-xs-12 margin-bottom-15">
+		            	<div class="page-heading">
+		              		<h1 class="no-margin">
+		              			<strong>
+		              				<span>Dashboard</span>
+                      			</strong>
+                      		</h1>
+		            	</div>		            	
+		          	</div>
+                    <hr class='hr-border'/>
+                    <div class='col-xs-12 dashboard-cont'>
+                        <h3>hello </h3><h3 class='full-name'></h3>
+                    </div>
+				</div>
+                
+                <div class="wrapper clearfix animated fadeIn" container-id="users" style="display: none;">
+                    <div class="col-xs-12 margin-bottom-15">
+		            	<div class="page-heading">
+		              		<h1 class="no-margin">
+		              			<strong>
+		              				<span>Users</span>
+                      			</strong>
+                      		</h1>
+		            	</div>		            	
+		          	</div>
+                    <div class='col-xs-12'>
+                        <!-- <a data-bs-toggle="modal" data-bs-target="#users-mdl" class="add-new-link btn-add-user">
+                            <i class="fa fa-plus"></i>
+                            <span>add user</span>
+                        </a> -->
+                        <hr class='hr-border'/>
+                    </div>
+                    <div class='col-xs-12 users-cont'>
+                        <div class="background-white clearfix padding-15">
+                            <div class="row">
+					            <div class="col-md-12">
+					                <a class="no-txt-decoration filter-text btn-show-filter-users" href="javascript:;">
+					                <span>Fillter Users</span>
+					                <i class="fa fa-angle-double-down"></i>
+					                </a>
+					            </div>
+					        </div>
+                        </div>
+                        <div class="user-filter-container clearfix margin-top-15" style='display: none;'>
+                            <div class='row'>
+                                <div class="col-md-4 no-padding">
+                                    <div class="col-md-4">
+                                        <label class="control-label margin-top-5 nowrap">User</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control margin-top-5" id="user_id" data-id>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 no-padding">
+                                    <div class="col-md-4">
+                                        <label class="control-label margin-top-5 nowrap">Permission Type</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control margin-top-5" id="permission_type_id" data-id>
+                                    </div>
+                                </div>
+                             </div>
+                             <div class='row'>
+					            <div class="col-md-12 no-padding margin-top-20">
+					                <button type="button" class="btn btn-primary no-radius btn-filter-users">
+					                    <i class="fa fa-filter"></i>
+					                    <span>Filter</span>
+					                </button>
+					                <button type="button" class="btn btn-primary no-radius btn-filter-users-clear">
+					                    <i class="fa fa-repeat"></i>
+					                    <span data-i18n="">Reset</span>
+					                </button>
+					            </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 margin-top-40">
+                            <table id="tbl-users" class="table table-hover" style="display:none;">
+                              <thead>
+                                  <tr>
+                                      <th class="">#</th>
+                                      <th class="">Username</th>
+                                      <th class="">First Name</th>
+                                      <th class="">Last Name</th>
+                                      <th class="">Permission</th>
+                                      <th class="">Create Date</th>
+                                      <th class="">Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="user-tbody">
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper clearfix animated fadeIn" container-id="permission" style="display: none ;">
+                    <div class="col-xs-12 margin-bottom-15">
+		            	<div class="page-heading">
+		              		<h1 class="no-margin">
+		              			<strong>
+		              				<span>Permissions</span>
+                      			</strong>
+                      		</h1>
+		            	</div>		            	
+		          	</div>
+                    <div class='col-xs-12'>
+                        <a class="add-new-link btn-add-role" href="#/crud-role" data-method="post">
+                            <i class="fa fa-plus"></i>
+                            <span>add new Group</span>
+                        </a>
+                        <hr class='hr-border'/>
+                    </div>
+                    <div class='col-xs-12 perm-cont'>
+                        <div class="background-white clearfix padding-15">
+                            <!-- <div class="row">
+					            <div class="col-md-12">
+					                <a class="no-txt-decoration btn-show-filter-roles filter-text" href="javascript:;">
+					                <span data-i18n="">Filter Roles</span>
+					                <i class="fa fa-angle-double-down"></i>
+					                </a>
+					            </div>
+					        </div> -->
+                        </div>
+                        <div class="col-xs-12 margin-top-40">
+                            <table id="tbl-perm" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="width-200">Id</th>                
+                                        <th class="">Role</th>    
+                                        <th class="text-center width-145">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="perm-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper clearfix animated fadeIn" container-id="crud-role" style="display: none;">
+                    <div class="col-xs-12 margin-bottom-15">
+		            	<div class="page-heading">
+		              		<h1 class="no-margin">
+		              			<strong>
+		              				<span>Permissions</span>
+                      			</strong>
+                      		</h1>
+		            	</div>		            	
+		          	</div>
+                    <div class='col-xs-12'>
+                        <hr class='hr-border'/>
+                    </div>
+                   
+                    <div class='col-xs-12 crud-role-cont'>
+                        <h3 class="no-margin">
+                            <span class='semi-header-text'>Add Roles</span>
+                        </h3>
+                        <div class='input-contianer-role margin-top-40 no-padding padding-left-30'>
+                            <div class='row margin-top-50'>
+                                <div class='col-md-3 nowrap label-holder'>
+                                    <label >Role Name :</label>
+                                </div>
+                                <div class='col-md-9 no-padding'>
+                                    <input id = 'permission-name-crd' type="text"  class='role-crud permission-name-crd form-control' autocomplete="off" required autofocus maxlength=45 />
+                                </div>
+                            </div>
+                            <div class='row margin-top-50'>
+                                <div class='col-md-3 nowrap label-holder'>
+                                    <label >Permissions :</label>
+                                </div>
+                                <div class='col-md-9 no-padding'>
+                                    
+                                    <select id='permissions-crud' class='select2-hidden-accessible role-crud form-control' name="perms[]" multiple="multiple"></select>
+                                </div>
+                            </div>
+                            <div class='row margin-top-95'>
+                                <div class='col-md-12 btn-container-crud-perm'>
+                                    <button class="btn-add-permission btn btn-primary no-radius margin-right-29">
+                                        <span>Add Role</span>
+                                    </button>
+                                    <button class="btn-add-permission-reset btn btn-primary no-radius">
+                                        <span>Reset</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper clearfix animated fadeIn" container-id="role" style="display: none;">
+                    <div class="col-xs-12 margin-bottom-15">
+		            	<div class="page-heading">
+		              		<h1 class="no-margin">
+		              			<strong>
+		              				<span>Roles</span>
+                      			</strong>
+                      		</h1>
+		            	</div>		            	
+		          	</div>
+                    <div class='col-xs-12'>
+                        <hr class='hr-border'/>
+                    </div>
+                    <div class='col-xs-12 role-mtx-main'>
+                        <div class='row role-mtx-render'>
+                            <!-- <div class='col-md-6'>
+                                <div class ='col-md-12 role-head' data-main-id=''>
+                                    <h3>Superadmin</h3>
+                                </div>
+                                <div class='row check-containers'>
+                                    <div class='col-md-4 margin-bottom-25'>
+                                        <label class="chk-lbl">add-permission-group</label>
+                                        
+                                        <input class="i-check route-perm" type="checkbox" data-id=''/>
+                                    </div>
+                                    <div class='col-md-4 margin-bottom-25'>
+                                        <label class="chk-lbl">add-permission-type</label>
+                                        <input class="i-check route-perm" type="checkbox" data-id=''/>
+                                    </div>
+                                    <div class='col-md-4 margin-bottom-25'>
+                                        <label class="chk-lbl">add-permission</label>
+                                        <input class="i-check route-perm" type="checkbox" data-id=''/>
+                                    </div>
+                                    <div class='col-md-4 margin-bottom-25'>
+                                        <label class="chk-lbl">delete-user</label>
+                                        <input class="i-check route-perm" type="checkbox" data-id=''/>
+                                    </div>
+                                </div>
+                            </div> -->
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+            
+        	          
+
+
+        
+        <script type="text/javascript" src="../config.js"></script>
+        <script type="text/javascript" src="../lib/jquery/dist/jquery.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="crossorigin="anonymous"></script>
+        
+        
+
+        <script type="text/javascript" src="../lib/sammy/lib/min/sammy-latest.min.js"></script>
+        <script async type="text/javascript" src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script defer type="text/javascript" src="../lib/sweetalert/dist/sweetalert.min.js"></script>
+        <script defer type="text/javascript" src="../lib/select2/dist/js/select2.full.min.js"></script>
+        <script defer type="text/javascript" src="../lib/mustache/mustache.min.js"></script>
+        <script defer type="text/javascript" src="../lib/icheck/icheck.js"></script>
+
+
+
+        <script defer type="text/javascript" src="../view/assets/js/app.js"></script>
+        <script defer type="text/javascript" src="../view/assets/js/app.template.js"></script>
+        <script defer type="text/javascript" src="../view/assets/js/app.route.js"></script>
+        <!-- modules -->
+        <script defer type="text/javascript" src="../view/assets/js/module.dashboard.js"></script>
+        <script defer type="text/javascript" src="../view/assets/js/module.users.js"></script>
+        <script defer type="text/javascript" src="../view/assets/js/module.permission.js"></script>
+        <script defer type="text/javascript" src="../view/assets/js/app.event.js"></script>
+        <!--  -->
+        <script defer type='text/javascript' src='../lib/dcjqaccordion/js/jquery.cookie.js'></script>
+        <script defer type='text/javascript' src='../lib/dcjqaccordion/js/jquery.hoverIntent.minified.js'></script>
+        <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.5.1/jquery.nicescroll.min.js"></script>
+        <script defer type="text/javascript" src="../lib/dcjqaccordion/js/jquery.dcjqaccordion.2.7.min.js"></script>
+        
+        
+
+        
+        
+        <div class="modal fade" id="update-role-mdl" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-default" style="margin-left: auto;margin-right: auto;">
+                <div class="modal-content no-radius">
+                    <div class="modal-header mdl-header">
+                        <!-- <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h3 class="modal-title mdl-up-perm"></h3>
+                    </div>
+                    <div class='mdl-divider'>
+                    </div>
+                    <div class="modal-body clearfix">
+                        <div class='row update-perm-modal-content'>
+                            <div class='col-md-9 no-padding'>
+                                <select class="form-type permission-type" id="permission-type">
+                                </select>
+                            </div>
+                            <div class='col-md-3 no-padding'>
+                                <button id='btn-update-perm' class='btn btn-primary no-radius pull-right'>update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="users-mdl" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" style="margin-left: auto;margin-right: auto;">
+                <div class="modal-content no-radius">
+                    <div class="modal-header mdl-header">
+                        <h3 class="modal-title">Add Users</h3>
+                    </div>
+                    <div class='mdl-divider'>
+                    </div>
+                    <div class="modal-body clearfix">
+                        
+                            <div class='row user-modal-content registration-container'>
+                                <div class='row username-password no-padding input-container-reg'>
+                                    <div class='username-reg margin-bottom-35'>
+                                        <div class='col-md-12 no-padding'>
+                                            <input id='add-username' class='fontAwesome form-control reg-element' type='text' maxlength="45" autocomplete="off" required autofocus placeholder="&#xf007 Username">
+                                        </div>
+                                    </div>
+                                    <div class='password-reg margin-bottom-35'>
+                                        <div class='col-md-12 no-padding'>
+                                            <input id='add-password' class='fontAwesome form-control reg-element' type='password' autocomplete="off" required placeholder="&#xf023 Password">
+                                        </div>
+                                    </div>
+                                    <div class='confirm-password margin-bottom-35 hide'>
+                                        <div class='col-md-12 no-padding hide'>
+                                            <input id='add-confirm_password' class='underline-error fontAwesome form-control reg-element' type='password' autocomplete="off" required placeholder="&#xf023 Confirm Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='row email-row no-padding input-container-reg'>
+                                    <div class='email-reg margin-bottom-35'>
+                                        <div class='col-md-12 no-padding'>
+                                            <input id='add-email' class='fontAwesome form-control reg-element' type='text' maxlength="255" autocomplete="off" required autofocus placeholder="&#xf0e0 Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='row permission_type_row no-padding input-container-reg'>
+                                    <div class='permission_type margin-bottom-35'>
+                                        <div class='col-md-12 no-padding'>
+                                            <select id='add-permission_type_reg' class='form-control reg-element'></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='row profile no-padding input-container-reg'>
+                                    <div class='f_name-reg margin-bottom-35'>
+                                        <div class='col-md-12 no-padding'>
+                                            <input id="add-f_name" class="fontAwesome form-control reg-element" type='text' placeholder="&#xf007 First Name">
+                                        </div>
+                                    </div>
+                                    <div class='l_name-reg margin-bottom-35'>
+                                        <div class='col-md-12 no-padding'>
+                                            <input id='add-l_name' class="fontAwesome form-control reg-element" type='text' placeholder="&#xf007Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="register-button-container col-xs-10 padding-bottom-10">
+                                    <button class="width-100 btn btn-primary no-radius register-button">Register</button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="view-users-mdl" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" style="margin-left: auto;margin-right: auto;">
+                <div class="modal-content no-radius">
+                    <div class="modal-header mdl-header">
+                        <h3 class="modal-title">Users</h3>
+                    </div>
+                    <div class='mdl-divider'>
+                    </div>
+                    <div class="modal-body clearfix">
+                        <div class='row user-modal-content'>
+                            <table id="tbl-users-mdl" class="table table-hover" style="display:none;">
+                                <thead>
+                                    <tr>
+                                        <th class="">#</th>
+                                        <th class="">Username</th>
+                                        <th class="">First Name</th>
+                                        <th class="">Last Name</th>
+                                        <th class="">Permission</th>
+                                        <th class="">Create Date</th>
+                                        <th class="">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="user-mdl-tbody">
+                                </tbody>
+                            </table>
+                            <div class='e-hand-contaienr col-md-12'>
+                                <h3 class='e-hand'></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

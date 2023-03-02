@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+       
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,900">
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="view/assets/css/lib/font-awesome/css/font-awesome.css"/>
+        <link rel="stylesheet" type="text/css" href="view/assets/css/style.css"/>
+        <script src="https://www.paypal.com/sdk/js?client-id=AU1WRx5CIqtsy2lepe-qKg_mnT82R8sSQCvxCvwc8he4hB3QpVToKFBGZrVWhVTzHF6qXMCun4coI-zH"></script>
+        <title>THE HOBO APP</title>
+        <link rel="icon" href="view/assets/images/hobo.jpg">
+        
+    </head>
+    <body>
+        <div id="pre-loader" class="animated fadeIn">
+            <div class="pre-container">
+                <!-- <div id="pre-loader-img"></div> -->
+                <div id="pre-loader-item"></div>
+                <h3></h3>
+            </div>
+        </div>
+        <section class='reg-section no-padding'>
+            <div class='registration-container'>
+                <div class='row username-password no-padding input-container-reg'>
+                    <div class='username-reg margin-bottom-35'>
+                        <div class='col-md-12 no-padding'>
+                            <input id='username' class='fontAwesome form-control reg-element' type='text' maxlength="45" autocomplete="off" required autofocus placeholder="&#xf007 Username">
+                        </div>
+                    </div>
+                    <div class='password-reg margin-bottom-35'>
+                        <div class='col-md-12 no-padding'>
+                            <input id='password' class='fontAwesome form-control reg-element' type='password' autocomplete="off" required placeholder="&#xf023 Password">
+                        </div>
+                    </div>
+                    <div class='confirm-password margin-bottom-35 hide'>
+                        <div class='col-md-12 no-padding'>
+                            <input id='confirm_password' class='underline-error fontAwesome form-control reg-element' type='password' autocomplete="off" required placeholder="&#xf023 Confirm Password">
+                        </div>
+                    </div>
+                </div>
+                <div class='row email-row no-padding input-container-reg'>
+                    <div class='email-reg margin-bottom-35'>
+                        <div class='col-md-12 no-padding'>
+                            <input id='email' class='fontAwesome form-control reg-element' type='text' maxlength="255" autocomplete="off" required autofocus placeholder="&#xf0e0 Email">
+                        </div>
+                    </div>
+                </div>
+                <div class='row permission_type_row no-padding input-container-reg'>
+                    <div class='permission_type margin-bottom-35'>
+                        <div class='col-md-12 no-padding'>
+                            <select id='permission_type_reg' class='form-control reg-element'></select>
+                        </div>
+                    </div>
+                </div>
+                <div class='row profile no-padding input-container-reg'>
+                    <div class='f_name-reg margin-bottom-35'>
+                        <div class='col-md-12 no-padding'>
+                            <input id="f_name" class="fontAwesome form-control reg-element" type='text' placeholder="&#xf007 First Name">
+                        </div>
+                    </div>
+                    <div class='l_name-reg margin-bottom-35'>
+                        <div class='col-md-12 no-padding'>
+                            <input id='l_name' class="fontAwesome form-control reg-element" type='text' placeholder="&#xf007Last Name">
+                        </div>
+                    </div>
+                </div>
+                <div class='row subscription no-padding input-container-reg'>
+                    <div class='payment-reg margin-bottom-35'>
+                        <div class='col-md-12 no-padding'>
+                            <label>standard(20.00)</label><input id='standard' class="payment" type='radio' name="payment" value="20.00"  checked="checked" >
+                            <label>premium(100.00)</label><input id='premium' class="payment" type='radio' name="payment" value="100.00">
+                        </div>
+                    </div>
+                    
+                    
+                   
+
+                </div>
+                
+                
+                <div class="register-button-container col-xs-10 padding-bottom-10">
+                    <button class="width-100 btn btn-primary no-radius register-button">Register</button>
+                </div>
+            </div>
+            <div id="test">
+                    
+            </div>
+        </section>
+
+        <script>
+            
+            
+
+        </script>
+        <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="crossorigin="anonymous"></script>
+        <script defer type="text/javascript" src="lib/mustache/mustache.min.js"></script>
+        <script type="text/javascript" src="lib/sweetalert/dist/sweetalert.min.js"></script>
+        <script async type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script type="text/javascript" src="config.js"></script>
+        <script defer type="text/javascript" src="view/assets/js/app.template.js"></script>
+        <script async defer type="text/javascript" src="view/assets/js/index.js"></script>
+        <script defer type="text/javascript" src="view/assets/js/app.js"></script> 
+    </body>
+</html>
